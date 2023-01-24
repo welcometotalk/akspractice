@@ -3,4 +3,6 @@ terraform init
 
 # provision AKS
 terraform apply -target module.rg
-terraform apply
+terraform apply -target module.aks
+
+# terraform apply

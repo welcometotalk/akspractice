@@ -3,6 +3,7 @@ variable "location" {}
 variable "dns_prefix" {}
 variable "cluster_name" {}
 variable "create_group" { default = false }
+variable "servicebus_name" {}
 
 module "rg" {
   source       = "./modules/resourcegroup"
@@ -17,6 +18,14 @@ module "aks" {
   dns_prefix          = var.dns_prefix
   resource_group_name = var.resource_group_name
 }
+
+module "servicebus" {
+  source              = "./modules/servicebus"
+  name                = var.servicebus_name
+  location          = var.location
+  resource_group_name = var.resource_group_name
+}
+
 
 output "resource_group_name" {
   value = module.rg.name
